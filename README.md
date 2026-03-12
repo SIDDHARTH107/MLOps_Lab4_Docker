@@ -1,22 +1,22 @@
-# 🏦 Loan Default Prediction — Dockerized ML Application
+# Loan Default Prediction: Dockerized ML Application
 
 > **MLOps Lab 4 Submission** | IE 7374 — Machine Learning Operations  
-> **Author:** [Your Name]  
-> **Northeastern University** | Spring 2026
+> **Author:** SIDDHARTH MOHAPATRA  
+> **Northeastern University** 
 
 ---
 
-## 📌 Overview
+## Overview
 
-This project demonstrates **Docker containerization** of a machine learning application that predicts whether a loan applicant is likely to default. The system consists of:
+This project is all about **Docker containerization** of a machine learning application that predicts whether a loan applicant is likely to default. This is the part of my MLOps course (Lab 4). The system consists of:
 
-- **Flask REST API** — Serves predictions from a trained Random Forest model
-- **Streamlit Dashboard** — Visual frontend for interacting with the prediction API
-- **Docker Compose** — Orchestrates both services in isolated containers
+- **Flask REST API** : Serves predictions from a trained Random Forest model
+- **Streamlit Dashboard** : Visual frontend for interacting with the prediction API
+- **Docker Compose** : Orchestrates both services in isolated containers
 
 ---
 
-## 🔄 Modifications from Original Lab
+## Modifications from Original Lab
 
 The original Docker lab (Week 7) containerizes a simple **Flask weather service** that calls an external weather API. This project makes the following modifications:
 
@@ -33,7 +33,7 @@ The original Docker lab (Week 7) containerizes a simple **Flask weather service*
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────┐
@@ -54,7 +54,7 @@ The original Docker lab (Week 7) containerizes a simple **Flask weather service*
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 loan-default-docker/
@@ -85,7 +85,7 @@ loan-default-docker/
 
 ---
 
-## 🚀 How to Run
+## How to Run
 
 ### Prerequisites
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/) installed and running
@@ -121,7 +121,7 @@ docker-compose down
 
 ---
 
-## 🧪 Testing the API
+## Testing the API
 
 ### Using curl:
 ```bash
@@ -154,7 +154,7 @@ curl -X POST http://localhost:5000/predict \
 
 ---
 
-## 🔧 Key Docker Concepts Demonstrated
+## Key Docker Concepts Demonstrated
 
 - **Dockerfile**: Defines the build steps for each container image
 - **Docker Compose**: Orchestrates multiple containers with shared networking
@@ -166,7 +166,7 @@ curl -X POST http://localhost:5000/predict \
 
 ---
 
-## 📊 Model Details
+## Model Details
 
 - **Algorithm:** Random Forest Classifier (100 trees, max depth 10)
 - **Dataset:** Synthetic credit data — 1000 samples, 8 features
@@ -176,7 +176,7 @@ curl -X POST http://localhost:5000/predict \
 
 ---
 
-## 🛠️ Technologies Used
+## Technologies Used
 
 - **Python 3.11**
 - **Flask** — REST API framework
