@@ -1,0 +1,60 @@
+# ============================================================
+# docker-compose.yml — The Orchestra Conductor
+# ============================================================
+# This file defines ALL the containers (services) and how they connect.
+#
+# Without this, you'd have to:
+#   1. docker build -f Dockerfile.api -t api .
+#   2. docker build -f Dockerfile.dashboard -t dashboard .
+#   3. docker network create mynetwork
+#   4. docker run --network mynetwork -p 5000:5000 api
+#   5. docker run --network mynetwork -p 8501:8501 dashboard
+#
+# With Docker Compose, it's just:
+#   docker-compose up --build
+#
+# One command does everything!
+
+version: "3.8"
+
+services:
+
+  # --------------------------------------------------------
+  # SERVICE 1: Flask API (The Kitchen)
+  # --------------------------------------------------------
+  api:
+    build:
+      context: .                    # Build from the project root
+      dockerfile: Dockerfile.api    # Use the API Dockerfile
+    container_name: loan-api        # Name for the running container
+    ports:
+      - "5000:5000"                 # Map host port 5000 → container port 5000
+                                    # So you can access the API at localhost:5000
+    environment:
+      - MODEL_DIR=/app/model        # Tell the app where to find the model
+    healthcheck:                    # Docker periodically checks if the API is alive
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:5000/')"]
+      interval: 30s                 # Check every 30 seconds
+      timeout: 10s                  # Wait up to 10 seconds for a response
+      retries: 3                    # Retry 3 times before marking as unhealthy
+    restart: unless-stopped         # Restart if it crashes
+
+  # --------------------------------------------------------
+  # SERVICE 2: Streamlit Dashboard (The Waiter)
+  # --------------------------------------------------------
+  dashboard:
+    build:
+      context: .                        # Build from the project root
+      dockerfile: Dockerfile.dashboard   # Use the Dashboard Dockerfile
+    container_name: loan-dashboard       # Name for the running container
+    ports:
+      - "8501:8501"                      # Map host port 8501 → container port 8501
+                                         # Access the dashboard at localhost:8501
+    environment:
+      - API_URL=http://api:5000          # Tell the dashboard where the API lives
+                                         # "api" is the service name above
+                                         # Docker Compose creates a network where
+                                         # services can find each other by name
+    depends_on:
+      - api                              # Start the API first, then the dashboard
+    restart: unless-stopped

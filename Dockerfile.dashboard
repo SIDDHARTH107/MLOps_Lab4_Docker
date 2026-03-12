@@ -1,0 +1,31 @@
+# ============================================================
+# Dockerfile.dashboard — Recipe for the Streamlit Dashboard container
+# ============================================================
+# Same concept as the API Dockerfile but for the frontend
+
+# STEP 1: Start from Python 3.11 slim
+FROM python:3.11-slim
+
+# STEP 2: Set working directory
+WORKDIR /app
+
+# STEP 3: Copy and install dependencies
+COPY dashboard/requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# STEP 4: Copy the dashboard code
+COPY dashboard/dashboard.py .
+
+# STEP 5: Set environment variable
+# Tells the dashboard where the Flask API lives
+# "api" is the service name from docker-compose.yml
+# Inside Docker network, containers find each other by service name
+ENV API_URL=http://api:5000
+
+# STEP 6: Expose Streamlit's default port
+EXPOSE 8501
+
+# STEP 7: Start Streamlit
+# --server.address=0.0.0.0 → Accept connections from anywhere
+# --server.headless=true → Don't try to open a browser (we're in a container)
+CMD ["streamlit", "run", "dashboard.py", "--server.port=8501", "--server.address=0.0.0.0", "--server.headless=true"]

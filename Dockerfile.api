@@ -1,0 +1,44 @@
+# ============================================================
+# Dockerfile.api — Recipe for building the Flask API container
+# ============================================================
+# Think of this like a recipe card:
+# 1. Start with a base (Python image)
+# 2. Set up your workspace
+# 3. Install ingredients (packages)
+# 4. Copy your code in
+# 5. Tell Docker how to start the app
+
+# STEP 1: Start from a slim Python 3.11 image
+# "slim" = smaller image size, faster to build and deploy
+FROM python:3.11-slim
+
+# STEP 2: Set the working directory inside the container
+# Everything after this happens inside /app
+WORKDIR /app
+
+# STEP 3: Copy and install dependencies FIRST
+# Why separate from copying code? Docker caches layers.
+# If requirements.txt hasn't changed, Docker skips reinstalling packages.
+# This makes rebuilds MUCH faster.
+COPY app/requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# STEP 4: Copy the Flask app code
+COPY app/app.py .
+
+# STEP 5: Copy the trained model files
+# These were created by train_model.py
+COPY model/model.pkl ./model/
+COPY model/scaler.pkl ./model/
+COPY model/feature_names.pkl ./model/
+
+# STEP 6: Set environment variable for model directory
+ENV MODEL_DIR=/app/model
+
+# STEP 7: Tell Docker this container listens on port 5000
+# (This is informational — actual port mapping is in docker-compose.yml)
+EXPOSE 5000
+
+# STEP 8: The command to run when the container starts
+# This starts the Flask server
+CMD ["python", "app.py"]

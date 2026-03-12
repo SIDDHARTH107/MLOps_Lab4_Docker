@@ -1,0 +1,10 @@
+# Don't send these to Docker during build (keeps images smaller)
+.git
+.gitignore
+__pycache__
+*.pyc
+.vscode
+.idea
+README.md
+.env
+venv/

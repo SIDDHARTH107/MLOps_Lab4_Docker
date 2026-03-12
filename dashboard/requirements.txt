@@ -1,0 +1,5 @@
+# Requirements for the Streamlit Dashboard
+# These get installed inside the Docker container
+
+streamlit==1.29.0      # The dashboard framework — creates web UIs from Python
+requests==2.31.0       # HTTP library — used to call the Flask API
