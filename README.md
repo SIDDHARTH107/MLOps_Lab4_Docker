@@ -184,3 +184,16 @@ curl -X POST http://localhost:5000/predict \
 - **scikit-learn** - Machine learning model training
 - **Docker** - Containerization
 - **Docker Compose** - Multi-container orchestration
+
+---
+
+## Screenshots
+
+<img width="1918" height="820" alt="image" src="https://github.com/user-attachments/assets/3dd94195-9b54-4ded-bbdd-22313c81e5d7" />
+
+<img width="1919" height="816" alt="image" src="https://github.com/user-attachments/assets/28b8793f-6027-469f-90a7-e77fd178f9e2" />
+
+<img width="1919" height="821" alt="image" src="https://github.com/user-attachments/assets/5bce9095-7b96-4698-844f-f2ea48d4c030" />
+
+<img width="1919" height="815" alt="image" src="https://github.com/user-attachments/assets/4d35d84f-e792-471f-ba4c-e8329ac26a12" />
+
