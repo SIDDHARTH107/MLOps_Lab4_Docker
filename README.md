@@ -197,3 +197,6 @@ curl -X POST http://localhost:5000/predict \
 
 <img width="1919" height="815" alt="image" src="https://github.com/user-attachments/assets/4d35d84f-e792-471f-ba4c-e8329ac26a12" />
 
+<img width="1919" height="1018" alt="image" src="https://github.com/user-attachments/assets/729e8693-dfa0-4ee2-91b7-25374108334f" />
+
+<img width="1919" height="1009" alt="image" src="https://github.com/user-attachments/assets/c0062f85-553e-43d0-88d3-bb87cb2fa1b6" />
