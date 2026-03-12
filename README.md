@@ -169,7 +169,7 @@ curl -X POST http://localhost:5000/predict \
 ## Model Details
 
 - **Algorithm:** Random Forest Classifier (100 trees, max depth 10)
-- **Dataset:** Synthetic credit data — 1000 samples, 8 features
+- **Dataset:** Synthetic credit data - 1000 samples, 8 features
 - **Features:** income, loan_amount, credit_score, months_employed, num_credit_lines, interest_rate, loan_term, dti_ratio
 - **Target:** Binary (0 = No Default, 1 = Default)
 - **Preprocessing:** StandardScaler normalization
@@ -179,8 +179,8 @@ curl -X POST http://localhost:5000/predict \
 ## Technologies Used
 
 - **Python 3.11**
-- **Flask** — REST API framework
-- **Streamlit** — Interactive dashboard framework
-- **scikit-learn** — Machine learning model training
-- **Docker** — Containerization
-- **Docker Compose** — Multi-container orchestration
+- **Flask** - REST API framework
+- **Streamlit** - Interactive dashboard framework
+- **scikit-learn** - Machine learning model training
+- **Docker** - Containerization
+- **Docker Compose** - Multi-container orchestration
